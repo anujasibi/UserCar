@@ -235,6 +235,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/payment"
                         android:text="Add Payment"
+                        android:hint="Add Payment"
                         android:textStyle="bold"
                         android:textColor="#000"
                         android:layout_centerInParent="true"

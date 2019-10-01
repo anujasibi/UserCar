@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,8 +32,9 @@ import creo.com.myapplication.utils.Global;
 import creo.com.myapplication.utils.SessionManager;
 
 public class CarDetailsnew extends AppCompatActivity {
-    TextView carname,drivername,destn;
-    String cname,dname,imag,dest=null;
+    TextView carname,drivername,destn,payment;
+    String cname,dname,imag,dest,am=null;
+    String cash,online=null;
     ImageView imageView;
     TextView amount;
     Context context=this;
@@ -57,6 +59,7 @@ public class CarDetailsnew extends AppCompatActivity {
         imageView=findViewById(R.id.indicator);
         destn=findViewById(R.id.textn1);
         amount=findViewById(R.id.amount);
+        payment=findViewById(R.id.payment);
         sessionManager = new SessionManager(this);
 
         Bundle bundle=getIntent().getExtras();
@@ -64,12 +67,41 @@ public class CarDetailsnew extends AppCompatActivity {
         dname=bundle.getString("Name");
         imag=bundle.getString("image");
         dest=bundle.getString("dest");
+        am=bundle.getString("rate");
+//        cash=bundle.getString("cash");
+////        payment.setText(cash);
+//        Log.d("cash","mm"+cash);
+//        online=bundle.getString("online");
+        payment.setText(Global.mode);
+//        payment.setText(online);
+
+//        if (cash.equals("Cash")){
+//            payment.setText(cash);
+//        }
+//        if (online.equals("Pay Online")){
+//            payment.setText(online);
+//        }
+
+
 
         Picasso.with(CarDetailsnew.this).load(imag ).into(imageView);
         carname.setText(cname);
         drivername.setText(dname);
         destn.setText(dest);
         amount.setText(rate);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CarDetailsnew.this,AddPayment.class);
+                intent.putExtra("Car",cname);
+                intent.putExtra("Name",dname);
+                intent.putExtra("image",imag);
+                intent.putExtra("dest",dest);
+                intent.putExtra("rate",amount.getText().toString());
+                startActivity(intent);
+            }
+        });
 
 
 

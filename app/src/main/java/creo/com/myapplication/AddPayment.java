@@ -1,11 +1,21 @@
 package creo.com.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
+
+import creo.com.myapplication.utils.Global;
 
 public class AddPayment extends AppCompatActivity {
+
+    CardView cardView,cardv;
+    TextView cash,online;
+    String cname,dname,imag,dest,amount=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,5 +23,49 @@ public class AddPayment extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
+
+        cardView=findViewById(R.id.carde);
+        cardv=findViewById(R.id.cardee);
+
+        cash=findViewById(R.id.textn);
+        online=findViewById(R.id.textn1);
+
+        Bundle bundle=getIntent().getExtras();
+        cname=bundle.getString("Car");
+        dname=bundle.getString("Name");
+        imag=bundle.getString("image");
+        dest=bundle.getString("dest");
+        amount=bundle.getString("rate");
+
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AddPayment.this,CarDetailsnew.class);
+//                i.putExtra("cash",cash.getText().toString());
+                Global.mode="Cash";
+                intent.putExtra("Car",cname);
+                intent.putExtra("Name",dname);
+                intent.putExtra("image",imag);
+                intent.putExtra("dest",dest);
+                intent.putExtra("rate",amount);
+                startActivity(intent);
+            }
+        });
+        cardv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AddPayment.this,CarDetailsnew.class);
+//                i.putExtra("online",online.getText().toString());
+                Global.mode="Pay Online";
+                intent.putExtra("Car",cname);
+                intent.putExtra("Name",dname);
+                intent.putExtra("image",imag);
+                intent.putExtra("dest",dest);
+                intent.putExtra("rate",amount);
+                startActivity(intent);
+            }
+        });
+
     }
 }
