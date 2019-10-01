@@ -3,6 +3,7 @@ package creo.com.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class CarDetailsnew extends AppCompatActivity {
     SessionManager sessionManager;
     private String URLline = Global.BASE_URL+"driver/get_trip_fare/";
     private String URLlin = "http://creocabs.herokuapp.com/user/make_payment/";
+    private ProgressDialog dialogs ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class CarDetailsnew extends AppCompatActivity {
         payment=findViewById(R.id.payment);
         book=findViewById(R.id.book);
         sessionManager = new SessionManager(this);
+        dialogs=new ProgressDialog(CarDetailsnew.this,R.style.MyAlertDialogStyle);
+        dialogs.setMessage("Loading...");
+        dialogs.show();
 
         Bundle bundle=getIntent().getExtras();
         cname=bundle.getString("Car");
@@ -133,7 +138,7 @@ public class CarDetailsnew extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                      //  dialog.dismiss();
+                       dialogs.dismiss();
                         Toast.makeText(CarDetailsnew.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);
                         try {

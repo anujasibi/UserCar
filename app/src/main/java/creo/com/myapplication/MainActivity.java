@@ -1,5 +1,6 @@
 package creo.com.myapplication;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     boolean doubleBackToExitPressedOnce = false;
 
+    private ProgressDialog dialogs ;
 
 
 
@@ -183,11 +185,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         sessionManager = new SessionManager(this);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        dialogs=new ProgressDialog(MainActivity.this,R.style.MyAlertDialogStyle);
         cardView = (CardView) findViewById(R.id.card);
         card=(CardView)findViewById(R.id.carde);
         cardn=(CardView)findViewById(R.id.cardt);
 
         cardf=findViewById(R.id.cardq);
+        dialogs.setMessage("loading...");
+        dialogs.show();
 
 
         im=(ImageView) findViewById(R.id.button);
@@ -922,6 +927,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(MainActivity.this,response,Toast.LENGTH_LONG).show();
+                        dialogs.dismiss();
                         //parseData(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
