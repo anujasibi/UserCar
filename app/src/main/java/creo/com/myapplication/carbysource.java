@@ -29,7 +29,7 @@ import java.util.Map;
 import creo.com.myapplication.utils.Global;
 import creo.com.myapplication.utils.SessionManager;
 
-public class cardet extends AppCompatActivity {
+public class carbysource extends AppCompatActivity {
     TextView carname,drivername,destn;
     String cname,dname,imag,dest=null;
     ImageView imageView;
@@ -46,7 +46,7 @@ public class cardet extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_detailsnew);
+        setContentView(R.layout.activity_carbysource);
         fair();
 
         carname=findViewById(R.id.text);
@@ -62,7 +62,7 @@ public class cardet extends AppCompatActivity {
         imag=bundle.getString("image");
         dest=bundle.getString("dest");
 
-        Picasso.with(cardet.this).load(imag ).into(imageView);
+        Picasso.with(carbysource.this).load(imag ).into(imageView);
         carname.setText(cname);
         drivername.setText(dname);
         destn.setText(dest);
@@ -77,7 +77,7 @@ public class cardet extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //  dialog.dismiss();
-                        Toast.makeText(cardet.this,response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(carbysource.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
@@ -87,7 +87,7 @@ public class cardet extends AppCompatActivity {
                             Log.d("ratemmmmmm","mm"+rate);
                             amount.setText(rate);
                             Log.d("otp","mm"+ot);
-                            Toast.makeText(cardet.this, ot, Toast.LENGTH_LONG).show();
+                            Toast.makeText(carbysource.this, ot, Toast.LENGTH_LONG).show();
 
 
 
@@ -102,20 +102,20 @@ public class cardet extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(cardet.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(carbysource.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("dest_latitude", sessionManager.getUpdatelat());
-                Log.d("lat","mm"+sessionManager.getUpdatelat());
+                params.put("dest_latitude", sessionManager.getDesttripLat());
+                Log.d("lat","mm"+sessionManager.getDesttripLat());
                 params.put("dest_longitude",sessionManager.getDesttripLong());
-                Log.d("lat","mm"+sessionManager.getUpdateLong());
-                params.put("source_latitude",sessionManager.getSourcLat());
-                Log.d("lat","mm"+sessionManager.getSourcLat());
-                params.put("source_longitude",sessionManager.getSourcLong());
-                Log.d("lat","mm"+sessionManager.getSourcLong());
+                Log.d("DESTLONG","mm"+sessionManager.getDesttripLong());
+                params.put("source_latitude",sessionManager.getSourcetriplat());
+                Log.d("lat","mm"+sessionManager.getSourcetriplat());
+                params.put("source_longitude",sessionManager.getSourcetriplong());
+                Log.d("lat","mm"+sessionManager.getSourcetriplong());
                 return params;
             }
 
@@ -135,7 +135,7 @@ public class cardet extends AppCompatActivity {
 
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please click BACK again to homepage", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(cardet.this,MainActivity.class));
+        startActivity(new Intent(carbysource.this,MainActivity.class));
 
         new Handler().postDelayed(new Runnable() {
 

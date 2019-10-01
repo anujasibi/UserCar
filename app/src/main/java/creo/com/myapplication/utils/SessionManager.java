@@ -45,6 +45,21 @@ public class SessionManager {
 
             return  sharedPreferences.getString("longt","");
     }
+    public void setDesttripLong(String dtlo){
+        sharedPreferences.edit().putString("dtlo",dtlo).commit();
+    }
+    public String getDesttripLong(){
+
+        return  sharedPreferences.getString("dtlo","");
+    }
+
+    public String getDesttripLat(){
+        return  sharedPreferences.getString("lattrip","");
+    }
+    public void setDestriptLat(String lattrip){
+        sharedPreferences.edit().putString("lattrip",lattrip).commit();
+    }
+
     public void setUpdatelat(String uplat){
         sharedPreferences.edit().putString("uplat",uplat).commit();
     }
@@ -59,6 +74,7 @@ public class SessionManager {
 
         return  sharedPreferences.getString("uplong","");
     }
+
     public void setScheduledlat(String slat){
         sharedPreferences.edit().putString("slat",slat).commit();
     }
@@ -72,6 +88,20 @@ public class SessionManager {
     public String getScheduledlong(){
 
         return  sharedPreferences.getString("slon","");
+    }
+    public void setSourcetriplat(String trla){
+        sharedPreferences.edit().putString("trla",trla).commit();
+    }
+    public String getSourcetriplat(){
+
+        return  sharedPreferences.getString("trla","");
+    }
+    public void setSourcetriplong(String trlo){
+        sharedPreferences.edit().putString("trlo",trlo).commit();
+    }
+    public String getSourcetriplong(){
+
+        return  sharedPreferences.getString("trlo","");
     }
    public void setTokens(String token){
         sharedPreferences.edit().putString("token",token).commit();

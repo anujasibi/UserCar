@@ -33,9 +33,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import creo.com.myapplication.utils.Global;
+import creo.com.myapplication.utils.SessionManager;
 
 public class choosetrip extends AppCompatActivity {
-    private RecyclerAdapter recyclerAdapter;
+    private recyclersource recyclerAdapter;
     private RecyclerView recyclerView;
     String source_lat = null;
     String source_lng = null;
@@ -44,6 +45,8 @@ public class choosetrip extends AppCompatActivity {
     EditText source,dest,time;
     Context context = this;
     ArrayList<RecyclerPojo> dataModelArrayList;
+    SessionManager sessionManager;
+
     private String URLline = Global.BASE_URL+"driver/get_cabs_on_source/";
 
     @SuppressLint("WrongConstant")
@@ -57,6 +60,7 @@ public class choosetrip extends AppCompatActivity {
         source=findViewById(R.id.name);
         dest=findViewById(R.id.name1);
         time=findViewById(R.id.name2);
+        sessionManager = new SessionManager(this);
 
       /*  RecyclerPojo[] recyclerPojo = new RecyclerPojo[]{
                 new RecyclerPojo("ALTO", R.drawable.alto, "45 KM", "4.2*"),
@@ -231,11 +235,17 @@ public class choosetrip extends AppCompatActivity {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
               params.put("latitude", source_lat);
-             params.put("longitude", source_lng);
+              params.put("longitude", source_lng);
              params.put("dest_lat",dest_lat);
              params.put("dest_long",dest_lng);
+             sessionManager.setDesttripLong(dest_lng);
+             Log.d("destinationtriplong","mm"+dest_lng);
+             sessionManager.setDestriptLat(dest_lat);
+             sessionManager.setSourcetriplat(source_lat);
+             sessionManager.setSourcetriplong(source_lng);
                 return params;
             }
+
 
         };
 
@@ -246,7 +256,7 @@ public class choosetrip extends AppCompatActivity {
     @SuppressLint("WrongConstant")
     private void setupRecycler(){
 
-        recyclerAdapter = new RecyclerAdapter(this,dataModelArrayList);
+        recyclerAdapter = new recyclersource(this,dataModelArrayList);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 

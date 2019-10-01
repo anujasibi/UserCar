@@ -11,20 +11,13 @@
         android:orientation="vertical"
         android:gravity="center"
         >
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gif"
+            android:src="@drawable/taxiuse"
+            android:scaleType="centerCrop"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="36sp"
-            android:textColor="#000"
-            android:text="Name"
-            />
-
-        <ImageView
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:src="@drawable/splash"
             />
 
     </LinearLayout>

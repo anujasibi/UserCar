@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".scheduleverify"></activity>
+        <activity android:name=".carbysource"></activity>
+        <activity android:name=".scheduleverify" />
         <activity android:name=".savedplacelist" />
         <activity android:name=".BookingHistory" />
         <activity android:name=".BookingVerified" />
