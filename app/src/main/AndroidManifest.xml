@@ -43,7 +43,7 @@
             android:value="AIzaSyBEMkM4tXPGJsbm7Nrr_ZXXkj_PZr4z2_g" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_ILgsfZCZoFIKMb" />
+            android:value="rzp_live_MquWTYi6ypIVBE" />
 
         <activity android:name=".AddPayment" />
         <activity android:name=".TripHistory" />

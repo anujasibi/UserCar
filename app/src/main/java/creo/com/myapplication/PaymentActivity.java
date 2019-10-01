@@ -40,7 +40,8 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
     private ProgressDialog dialog ;
     Context context=this;
     String emails,phoneno=null;
-
+    String destination,mode_of_payment,imagamounte,razorid=null;
+    private String URLlin = "http://creocabs.herokuapp.com/user/make_payment/";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,11 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
         dialog.setMessage("Loading..");
         dialog.show();
 
+        Bundle bundle=getIntent().getExtras();
+        destination=bundle.getString("destination");
+        mode_of_payment=bundle.getString("mode_of_payment");
+        imagamounte=bundle.getString("imagamounte");
+
         /*
          To ensure faster loading of the Checkout form,
           call this method as early as possible in your checkout flow.
@@ -58,17 +64,14 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
         Checkout.preload(getApplicationContext());
 
         // Payment button created by you in XML layout
-        cardView=findViewById(R.id.cardee);
+        //cardView=findViewById(R.id.cardee);
 
         userdetails();
 
+        startPayment();
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startPayment();
-            }
-        });
+
+
     }
 
     public void startPayment() {
@@ -112,6 +115,9 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
     public void onPaymentSuccess(String razorpayPaymentID) {
         try {
             Toast.makeText(this, "Payment Successful: " + razorpayPaymentID, Toast.LENGTH_SHORT).show();
+            razorid=razorpayPaymentID;
+            boouser();
+
         } catch (Exception e) {
             Log.e(TAG, "Exception in onPaymentSuccess", e);
         }
@@ -198,4 +204,68 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
         requestQueue.add(stringRequest);
 
     }
+    private void boouser(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLlin,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //  dialog.dismiss();
+                        Toast.makeText(PaymentActivity.this,response,Toast.LENGTH_LONG).show();
+                        //parseData(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String ot = jsonObject.optString("message");
+                            String status=jsonObject.optString("status");
+                            Log.d("otp","mm"+ot);
+                            Toast.makeText(PaymentActivity.this, ot, Toast.LENGTH_LONG).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("response","hhh"+response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PaymentActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("driver", sessionManager.getID());
+                Log.d("driver","mm"+sessionManager.getID());
+                params.put("source",sessionManager.getSourceadd());
+                Log.d("source","mm"+sessionManager.getSourceadd());
+                params.put("destination",destination);
+                Log.d("des","mm"+destination);
+                params.put("mode_of_payment",mode_of_payment);
+                Log.d("lat","mm"+mode_of_payment);
+                params.put("amount",imagamounte);
+                Log.d("lat","mm"+imagamounte);
+                params.put("payment_id",razorid);
+                Log.d("paymentid",razorid);
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token "+sessionManager.getTokens());
+                return params;
+            }
+
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+
+
+    }
+
 }

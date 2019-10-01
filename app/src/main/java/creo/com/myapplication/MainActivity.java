@@ -943,6 +943,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                                 playerModel.setName(dataobj.getString("Car"));
                                 playerModel.setDistance(dataobj.getString("Name"));
+                                sessionManager.setID(dataobj.getString("Id"));
                                 playerModel.setImage(Global.BASE_URL+"media/"+dataobj.getString("image"));
                                 //  playerModel.setRat(dataobj.getString(""));
 

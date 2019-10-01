@@ -24,6 +24,17 @@ public class SessionManager {
     sharedPreferences.edit().putString("lat",lat).commit();
     }
 
+    public String getID() {
+        String lat = sharedPreferences.getString("ID","");
+
+        return lat;
+    }
+
+    public void setID(String ID) {
+        sharedPreferences.edit().putString("ID",ID).commit();
+    }
+
+
     public void setSourceLong(String longt){
         sharedPreferences.edit().putString("longt",longt).commit();
     }
