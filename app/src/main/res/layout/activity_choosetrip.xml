@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".choosetrip">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ne"
+        android:textSize="18sp"
+        android:background="@color/blu"
+        android:text="My Application"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:textColor="#fff"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ne">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardnew"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:layout_marginTop="10dp"
+                app:cardElevation="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/te"
+                    android:layout_below="@+id/text"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="2dp"
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/name"
+                        android:paddingTop="5dp"
+                        android:hint="Source Point"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/location"
+                        android:scaleType="center"
+                        android:background="#fff"
+                        />
+                    </RelativeLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardnew1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/cardnew"
+                android:layout_marginTop="10dp"
+                app:cardElevation="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/te1"
+                    android:layout_below="@+id/text"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="2dp"
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:id="@+id/name1"
+                            android:paddingTop="5dp"
+                            android:hint="Destination"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_height="match_parent" />
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/location"
+                            android:scaleType="center"
+                            android:background="#fff"
+                            />
+                    </RelativeLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardnew2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/cardnew1"
+                android:layout_marginTop="10dp"
+                app:cardElevation="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/te2"
+                    android:layout_below="@+id/text"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="2dp"
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:id="@+id/name2"
+                            android:paddingTop="5dp"
+                            android:hint="Time"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_height="match_parent" />
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/time"
+                            android:scaleType="center"
+                            android:background="#fff"
+                            />
+                    </RelativeLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/go"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Get My List"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/cardnew2"
+                android:background="#1AAEF4"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/re"
+                android:visibility="gone"
+                android:layout_below="@id/go"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

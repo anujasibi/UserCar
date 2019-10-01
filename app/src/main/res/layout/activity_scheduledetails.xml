@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scheduledetails">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/ne"
+                android:textSize="18sp"
+                android:background="#1AAEF4"
+                android:text="Schedule Details"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                android:textColor="#fff"/>
+
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="80dp"
+                android:id="@+id/cas"
+                app:cardElevation="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+               >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:id="@+id/ims"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/driver"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:text="Ride Scheduled"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_toEndOf="@+id/ims"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tr"
+                android:layout_below="@+id/cas"
+                android:layout_marginTop="30dp"
+                android:text="Trip Scheduled To:"
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trn"
+                android:layout_below="@+id/tr"
+                android:layout_marginTop="30dp"
+                android:text="Place:"
+                android:textAlignment="center"
+                android:layout_centerInParent="true"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trnn"
+                android:layout_below="@+id/trn"
+                android:layout_marginTop="30dp"
+                android:text="Time:"
+                android:textAlignment="center"
+                android:layout_centerInParent="true"
+                android:textColor="#000"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trnnn"
+                android:layout_below="@+id/trnn"
+                android:layout_marginTop="30dp"
+                android:text="Day:"
+                android:textAlignment="center"
+                android:layout_centerInParent="true"
+                android:textColor="#000"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/trnnn"
+                android:layout_marginTop="50dp"
+                android:id="@+id/cass"
+                app:cardElevation="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:id="@+id/imss"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/carn"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:text="Car details will be shared 15 min before pickup time"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:layout_toEndOf="@+id/imss"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                app:cardElevation="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/casss"
+                android:layout_below="@+id/cass">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@id/text"
+                        android:text="Estimated Amount :"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="50dp"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/text"
+                        android:text="₹ 350"
+                        android:gravity="center_horizontal"
+                        android:textSize="20sp"
+                        android:layout_marginTop="12dp"
+                        android:id="@+id/amount"
+                        android:textColor="#000"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/ned"
+                android:layout_below="@+id/casss"
+                android:textSize="20sp"
+                android:background="#fff"
+                android:layout_marginTop="10dp"
+                android:text="Confirm >>>>"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                android:textColor="#1AAEF4"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,145 @@
+package creo.com.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import creo.com.myapplication.utils.Global;
+import creo.com.myapplication.utils.SessionManager;
+
+public class SCHEDULEDTRIPS extends AppCompatActivity {
+    private ScheduleAdapter scheduleAdapter;
+    private RecyclerView recyclerView;
+    Context context=this;
+    private String URLline = Global.BASE_URL+"user/get_scheduled_trips/";
+    ArrayList<SchedulePojo> schedulePojos;
+    SessionManager sessionManager;
+    private ProgressDialog dialog ;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        getSupportActionBar().hide();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scheduledtrips);
+
+        recyclerView = findViewById(R.id.re);
+        sessionManager = new SessionManager(this);
+        dialog=new ProgressDialog(SCHEDULEDTRIPS.this,R.style.MyAlertDialogStyle);
+        dialog.setMessage("Loading..");
+        dialog.show();
+        passlatlong();
+    }
+    private void passlatlong(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLline,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dialog.dismiss();
+                        Toast.makeText(SCHEDULEDTRIPS.this,response,Toast.LENGTH_LONG).show();
+                        //parseData(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String ot = jsonObject.optString("message");
+                            String status=jsonObject.optString("data");
+
+                            Log.d("otp","mm"+ot);
+
+
+                            Toast.makeText(SCHEDULEDTRIPS.this, ot, Toast.LENGTH_LONG).show();
+                            //  JSONObject obj = new JSONObject(response);
+
+
+
+
+
+                            schedulePojos = new ArrayList<>();
+                            //   JSONObject jsonObject1=jsonObject.getJSONObject("places");
+                            Log.d("data","mm"+status);
+                            JSONArray dataArray  = new JSONArray(status);
+                            JSONObject jsonObject4 = dataArray.optJSONObject(0);
+
+                            // Log.d("fieldcab","mm"+fieldcab);
+
+                            for (int i = 0; i < dataArray.length(); i++) {
+
+                                SchedulePojo playerModel = new SchedulePojo();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                JSONObject fieldcab = dataobj.optJSONObject("fields");
+                                playerModel.setDate(fieldcab.getString("date"));
+                                playerModel.setTimes(fieldcab.getString("time"));
+                                playerModel.setSources(fieldcab.getString("source"));
+                                playerModel.setDestination(fieldcab.getString("destination"));
+
+
+                                schedulePojos.add(playerModel);
+
+
+
+                                setupRecycler();
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("response","hhh"+response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SCHEDULEDTRIPS.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token "+sessionManager.getTokens());
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+    }
+    @SuppressLint("WrongConstant")
+    private void setupRecycler(){
+
+        scheduleAdapter = new ScheduleAdapter(this,schedulePojos);
+        recyclerView.setAdapter(scheduleAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+    }
+}
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TripHistory">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ne"
+        android:textSize="18sp"
+        android:background="@color/blu"
+        android:text="My Application"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:textColor="#fff"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ne"
+        android:id="@+id/re">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/re"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:id="@+id/add"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/blu"
+        android:text="Add a new place"/>
+
+
+</RelativeLayout>

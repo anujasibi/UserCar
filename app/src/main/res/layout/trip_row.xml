@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/cardq"
+        android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:cardElevation="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/name"
+                    android:text="$ 450"
+                    android:textSize="40dp"
+                    android:textColor="#1AAEF4"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phone"
+                    android:text="10 Sep 2019"
+                    android:textColor="#000"
+                    android:layout_below="@+id/name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:id="@+id/imagem"
+                    android:layout_height="20dp"
+                    android:layout_toRightOf="@+id/name"
+                    android:src="@drawable/marker"
+                    android:scaleType="centerCrop"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/source"
+                    android:text="Kaloor"
+                    android:textColor="#000"
+                    android:layout_toRightOf="@+id/imagem"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:id="@+id/imagemm"
+                    android:layout_height="20dp"
+                    android:layout_toRightOf="@+id/name"
+                    android:layout_below="@+id/imagem"
+                    android:src="@drawable/dest"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dest"
+                    android:text="Kaloor"
+                    android:textColor="#000"
+                    android:layout_below="@+id/source"
+                    android:layout_toRightOf="@+id/imagemm"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+
+
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="creo.com.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".scheduleverify"></activity>
+        <activity android:name=".savedplacelist" />
+        <activity android:name=".BookingHistory" />
+        <activity android:name=".BookingVerified" />
+        <activity android:name=".Scheduleddetails" />
+        <activity android:name=".SCHEDULEDTRIPS" />
+        <activity android:name=".choosecardetails" />
+        <activity android:name=".choosedestination" />
+        <activity android:name=".CarDetailsnew" />
+        <activity android:name=".LoginReset" />
+        <activity android:name=".verify" />
+        <activity android:name=".Verified" />
+        <activity android:name=".otp" />
+        <activity android:name=".otpverify" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".forgotpassword" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBEMkM4tXPGJsbm7Nrr_ZXXkj_PZr4z2_g" />
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_ILgsfZCZoFIKMb" />
+
+        <activity android:name=".AddPayment" />
+        <activity android:name=".TripHistory" />
+        <activity android:name=".searchplace" />
+        <activity android:name=".GoogleMapActivity" />
+        <activity android:name=".Homepage" />
+        <activity android:name=".NavigationDrawer" />
+        <activity android:name=".cardetails" />
+        <activity android:name=".choosecar" />
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".signup" />
+        <activity android:name=".PLACE" />
+        <activity android:name=".Tripdetails" />
+        <activity android:name=".choosetrip" />
+        <activity android:name=".schedule" />
+        <activity android:name=".scheduledetails" />
+        <activity android:name=".workplace" />
+        <activity android:name=".Setting" />
+        <activity
+            android:name=".SplashScreen"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".cardet" />
+        <activity android:name=".PaymentActivity" />
+    </application>
+
+</manifest>

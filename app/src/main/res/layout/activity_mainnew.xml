@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/li"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/card"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="5dp"
+                    app:cardElevation="10dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/img"
+                        android:layout_alignParentStart="true"
+                        android:scaleType="centerInside"
+                        android:layout_marginStart="5dp"
+                        android:layout_gravity="start"
+                        android:src="@drawable/location"/>
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toEndOf="@+id/img"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="Where to" />
+
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:id="@+id/button"
+                       android:src="@drawable/search"
+                       android:background="#fff"
+                       android:layout_alignParentEnd="true"
+                       android:scaleType="centerInside"
+                       />
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/container_toolbar"
+                android:layout_below="@+id/li"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                >
+
+            <fragment
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                tools:context="com.sample.sishin.maplocation.MapsActivity" />
+            <LinearLayout
+                android:id="@+id/locationMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/locationMarkertext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_map"
+                    android:gravity="center"
+                    android:minWidth="250dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text=" Set your Location "
+                    android:textColor="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/imageMarker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_marker" />
+
+            </LinearLayout>
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="180dp"
+                android:layout_below="@+id/container_toolbar"
+                android:id="@+id/carde"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="true"
+                app:cardElevation="20dp"
+                android:layout_height="50dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/im"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/searchnew"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textn"
+                        android:layout_toEndOf="@+id/im"
+                        android:text="Search By Source"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:layout_marginStart="10dp"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="center_vertical"
+                        />
+
+                </RelativeLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="180dp"
+                android:layout_below="@+id/container_toolbar"
+                android:id="@+id/cardt"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentRight="true"
+                app:cardElevation="20dp"
+                android:layout_height="50dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/im2"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/schedule"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textn2"
+                        android:layout_toEndOf="@+id/im2"
+                        android:text="Schedule the trip"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center_vertical"
+                        />
+
+                </RelativeLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/carde"
+            android:id="@+id/re">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
