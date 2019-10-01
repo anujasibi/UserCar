@@ -1,6 +1,8 @@
 package creo.com.myapplication;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,20 +11,45 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import creo.com.myapplication.utils.Global;
+import creo.com.myapplication.utils.SessionManager;
 
 public class PaymentActivity extends Activity implements PaymentResultListener {
     private static final String TAG = PaymentActivity.class.getSimpleName();
     CardView cardView;
+    private String URLline = Global.BASE_URL+"user/get_user_details/";
+    SessionManager sessionManager;
+    private ProgressDialog dialog ;
+    Context context=this;
+    String emails,phoneno=null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_payment);
+        sessionManager = new SessionManager(this);
+        dialog=new ProgressDialog(PaymentActivity.this,R.style.MyAlertDialogStyle);
+        dialog.setMessage("Loading..");
+        dialog.show();
 
         /*
          To ensure faster loading of the Checkout form,
@@ -32,6 +59,8 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
 
         // Payment button created by you in XML layout
         cardView=findViewById(R.id.cardee);
+
+        userdetails();
 
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -60,8 +89,8 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
             options.put("amount", "100");
 
             JSONObject preFill = new JSONObject();
-           // preFill.put("email", "test@razorpay.com");
-          //  preFill.put("contact", "9876543210");
+           preFill.put("email",emails );
+          preFill.put("contact",phoneno);
 
             options.put("prefill", preFill);
 
@@ -101,5 +130,72 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
         } catch (Exception e) {
             Log.e(TAG, "Exception in onPaymentError", e);
         }
+    }
+    private void userdetails(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLline,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dialog.dismiss();
+                        Toast.makeText(PaymentActivity.this,response,Toast.LENGTH_LONG).show();
+                        //parseData(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String ot = jsonObject.optString("message");
+                            String status=jsonObject.optString("code");
+                            String data=jsonObject.optString("data");
+                            JSONArray dataArray  = new JSONArray(data);
+                            JSONObject jsonObject1=dataArray.optJSONObject(0);
+                            emails=jsonObject1.optString("email");
+                         //   JSONObject email=jsonObject1.getJSONObject("email");
+                            Log.d("email","mm"+emails);
+
+                           // JSONObject phone=jsonObject1.getJSONObject("phone");
+                             phoneno=jsonObject1.optString("phone");
+                            Log.d("phone","mm"+phoneno);
+
+
+
+
+                            Log.d("otp","mm"+ot);
+                            if(status.equals("200")){
+                                Toast.makeText(PaymentActivity.this, ot, Toast.LENGTH_LONG).show();
+                               /* startActivity(new Intent(searchplace.this,scheduledetails.class));
+                                startActivity(i);*/
+                            }
+                            else{
+                                Toast.makeText(PaymentActivity.this, "Invalid Password."+ot, Toast.LENGTH_LONG).show();
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("response","hhh"+response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PaymentActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token "+sessionManager.getTokens());
+                return params;
+            }
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
     }
 }
