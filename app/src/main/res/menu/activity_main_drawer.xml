@@ -22,6 +22,11 @@
             android:title="Scheduled Trips" />
 
         <item
+            android:id="@+id/booking"
+            android:icon="@drawable/place"
+            android:title="Booking History" />
+
+        <item
             android:id="@+id/nav_notifications"
             android:icon="@drawable/help"
             android:title="Help" />
