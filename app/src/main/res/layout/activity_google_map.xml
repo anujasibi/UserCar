@@ -18,21 +18,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/tv"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/ne"
-        android:textSize="18sp"
-        android:background="@color/blu"
-        android:text="My Application"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:gravity="center_vertical"
-        android:textColor="#fff"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/blu"
+                android:id="@+id/rev"
+                android:layout_height="60dp">
 
-    <fragment
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/ne"
+                    android:textSize="18sp"
+                    android:background="@color/blu"
+                    android:text="Choose Car"
+                    android:layout_toEndOf="@+id/imk"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imk"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/back"/>
+
+            </RelativeLayout>
+
+
+            <fragment
         android:id="@+id/mapNearBy"
-        android:layout_below="@+id/ne"
+        android:layout_below="@+id/rev"
         android:layout_marginTop="5dp"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"

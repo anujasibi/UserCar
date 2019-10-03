@@ -50,6 +50,7 @@ public class CarDetailsnew extends AppCompatActivity {
     private String URLline = Global.BASE_URL+"driver/get_trip_fare/";
     private String URLlin = "http://creocabs.herokuapp.com/user/make_payment/";
     private ProgressDialog dialogs ;
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +67,19 @@ public class CarDetailsnew extends AppCompatActivity {
         destn=findViewById(R.id.textn1);
         amount=findViewById(R.id.amount);
         payment=findViewById(R.id.payment);
+        imagen=findViewById(R.id.imk);
         book=findViewById(R.id.book);
         sessionManager = new SessionManager(this);
         dialogs=new ProgressDialog(CarDetailsnew.this,R.style.MyAlertDialogStyle);
         dialogs.setMessage("Loading...");
         dialogs.show();
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Bundle bundle=getIntent().getExtras();
         cname=bundle.getString("Car");
@@ -95,6 +104,8 @@ public class CarDetailsnew extends AppCompatActivity {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialogs.setMessage("Loading..");
+                dialogs.show();
                 if(Global.mode.equals("Cash")){
                     boouser();
                 }
@@ -213,6 +224,7 @@ private void boouser(){
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                    dialogs.dismiss();
                     //  dialog.dismiss();
                     Toast.makeText(CarDetailsnew.this,response,Toast.LENGTH_LONG).show();
                     //parseData(response);

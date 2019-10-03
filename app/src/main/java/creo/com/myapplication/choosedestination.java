@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.Status;
@@ -33,7 +34,7 @@ public class choosedestination extends AppCompatActivity {
     TextView textView,latLongTV;
     TextInputEditText editText;
     SessionManager sessionManager;
-
+ImageView imagen;
     Button addressButton;
 
     @Override
@@ -48,6 +49,15 @@ public class choosedestination extends AppCompatActivity {
         editText =  findViewById(R.id.name);
 
         addressButton = (Button) findViewById(R.id.addressButton);
+
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Bundle bundle=getIntent().getExtras();
         cname=bundle.getString("Car");

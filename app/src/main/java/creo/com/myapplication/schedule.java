@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class schedule extends AppCompatActivity {
     private String URLline = Global.BASE_URL+"user/schedule_trip/";
     private String URLlinen = Global.BASE_URL+"user/get_favorite/";
     private ProgressDialog dialog ;
+    ImageView imagen;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -95,6 +97,14 @@ public class schedule extends AppCompatActivity {
 //
 //
 //        };
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         set_date = (TextView) findViewById(R.id.textj);
         set_time = (TextView) findViewById(R.id.textjj);
 

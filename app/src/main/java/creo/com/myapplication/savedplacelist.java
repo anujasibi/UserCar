@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class savedplacelist extends AppCompatActivity {
     private ProgressDialog dialog ;
     TextView add;
 
+    ImageView imagen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
@@ -63,6 +66,14 @@ public class savedplacelist extends AppCompatActivity {
         dialog.setMessage("Loading..");
         dialog.show();
         passlatlong();
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void passlatlong(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLline,

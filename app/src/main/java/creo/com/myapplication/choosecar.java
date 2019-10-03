@@ -7,12 +7,14 @@ import creo.com.myapplication.utils.Global;
 import creo.com.myapplication.utils.SessionManager;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,6 +42,8 @@ public class choosecar extends AppCompatActivity {
     SessionManager sessionManager;
     ArrayList<RecyclerPojo> dataModelArrayList;
     private String URLline = Global.BASE_URL+"driver/get_cabs_on_source/";
+    private ProgressDialog dialogs ;
+    ImageView imagen;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -47,6 +51,19 @@ public class choosecar extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+        dialogs=new ProgressDialog(choosecar.this,R.style.MyAlertDialogStyle);
+        dialogs.setMessage("Loading");
+        dialogs.show();
+
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         setContentView(R.layout.activity_choosecar);
        /* RecyclerPojo[] recyclerPojo = new RecyclerPojo[]{
                 new RecyclerPojo("ALTO", R.drawable.alto, "    45 KM", "4.2*"),
@@ -73,6 +90,7 @@ public class choosecar extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        dialogs.dismiss();
                         recyclerView.setVisibility(View.VISIBLE);
                         Toast.makeText(choosecar.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);

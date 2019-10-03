@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class scheduledetails extends AppCompatActivity {
     TextView place,time,date,amount,confirm;
     CardView cardView;
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,14 @@ public class scheduledetails extends AppCompatActivity {
         date=findViewById(R.id.trnnn);
         amount=findViewById(R.id.amount);
         confirm=findViewById(R.id.ned);
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

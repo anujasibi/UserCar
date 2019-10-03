@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class choosetrip extends AppCompatActivity {
     Context context = this;
     ArrayList<RecyclerPojo> dataModelArrayList;
     SessionManager sessionManager;
+    ImageView imagen;
 
     private String URLline = Global.BASE_URL+"driver/get_cabs_on_source/";
 
@@ -61,6 +63,14 @@ public class choosetrip extends AppCompatActivity {
         dest=findViewById(R.id.name1);
         time=findViewById(R.id.name2);
         sessionManager = new SessionManager(this);
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
       /*  RecyclerPojo[] recyclerPojo = new RecyclerPojo[]{
                 new RecyclerPojo("ALTO", R.drawable.alto, "45 KM", "4.2*"),

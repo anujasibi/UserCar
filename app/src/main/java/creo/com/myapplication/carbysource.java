@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class carbysource extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     SessionManager sessionManager;
     private String URLline = Global.BASE_URL+"driver/get_trip_fare/";
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,15 @@ public class carbysource extends AppCompatActivity {
         destn=findViewById(R.id.textn1);
         amount=findViewById(R.id.amount);
         sessionManager = new SessionManager(this);
+
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Bundle bundle=getIntent().getExtras();
         cname=bundle.getString("Car");

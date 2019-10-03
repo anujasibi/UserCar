@@ -9,7 +9,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -39,6 +41,7 @@ public class SCHEDULEDTRIPS extends AppCompatActivity {
     ArrayList<SchedulePojo> schedulePojos;
     SessionManager sessionManager;
     private ProgressDialog dialog ;
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,14 @@ public class SCHEDULEDTRIPS extends AppCompatActivity {
         dialog.setMessage("Loading..");
         dialog.show();
         passlatlong();
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void passlatlong(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLline,

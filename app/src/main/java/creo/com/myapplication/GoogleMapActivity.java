@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class GoogleMapActivity extends AppCompatActivity implements GoogleApiCli
     private MapFragment mapFragment;
     private boolean isFirstTime = true;
     SessionManager sessionManager;
+    ImageView imagen;
 
     //variables for current location
     private static final String TAG = "MainActivity";
@@ -78,6 +80,15 @@ public class GoogleMapActivity extends AppCompatActivity implements GoogleApiCli
         tvLocation = (TextView) findViewById((R.id.tv));
         sessionManager = new SessionManager(this);
         choose=findViewById(R.id.choose);
+
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         choose.setOnClickListener(new View.OnClickListener() {
             @Override

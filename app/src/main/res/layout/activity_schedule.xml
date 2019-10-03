@@ -25,22 +25,38 @@
             android:layout_height="match_parent"
             >
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/ne"
-                android:textSize="18sp"
-                android:background="#1AAEF4"
-                android:text="Schedule a Ride"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:gravity="center_vertical"
-                android:textColor="#fff"/>
+                android:background="@color/blu"
+                android:id="@+id/rev"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/ne"
+                    android:textSize="18sp"
+                    android:background="@color/blu"
+                    android:text="Schedule a ride"
+                    android:layout_toEndOf="@+id/imk"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imk"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/back"/>
+
+            </RelativeLayout>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:id="@+id/carde"
-                android:layout_below="@+id/ne"
+                android:layout_below="@+id/rev"
                 android:layout_marginLeft="10dp"
                 app:cardElevation="10dp"
                 android:layout_marginRight="10dp"

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import creo.com.myapplication.utils.Global;
@@ -16,6 +17,8 @@ public class AddPayment extends AppCompatActivity {
     CardView cardView,cardv;
     TextView cash,online;
     String cname,dname,imag,dest,amount=null;
+
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,14 @@ public class AddPayment extends AppCompatActivity {
         imag=bundle.getString("image");
         dest=bundle.getString("dest");
         amount=bundle.getString("rate");
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         cardView.setOnClickListener(new View.OnClickListener() {

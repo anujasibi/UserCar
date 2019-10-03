@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class searchplace extends AppCompatActivity {
     EditText editText;
     private String URLline = Global.BASE_URL+"user/add_favorite/";
     private ProgressDialog dialog ;
+    ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,14 @@ public class searchplace extends AppCompatActivity {
                 dialog.setMessage("Loading..");
                 dialog.show();
                 saveplace();
+            }
+        });
+        imagen=findViewById(R.id.imk);
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
