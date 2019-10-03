@@ -1,10 +1,12 @@
 package creo.com.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -152,7 +154,6 @@ public class CarDetailsnew extends AppCompatActivity {
                             Toast.makeText(CarDetailsnew.this, ot, Toast.LENGTH_LONG).show();
 
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -221,6 +222,32 @@ private void boouser(){
                         String status=jsonObject.optString("status");
                         Log.d("otp","mm"+ot);
                         Toast.makeText(CarDetailsnew.this, ot, Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                        String msg="Thank you for Choosing Us";
+                        String msg1="Booking Confirmed.";
+                        String msg2="Click to Track your car.";
+
+
+
+                        builder.setTitle(msg).setMessage(msg1+"\n"+msg2)
+                                .setCancelable(false)
+                                .setPositiveButton("Track", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        Intent intent = new Intent(CarDetailsnew.this, CarTracking.class);
+
+                                        //  Log.d("pppppp","mm"+token);
+                                        startActivity(intent);
+
+                                        //  MyActivity.this.finish();
+                                    }
+                                });
+
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
