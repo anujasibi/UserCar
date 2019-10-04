@@ -161,6 +161,7 @@ public class CarDetailsnew extends AppCompatActivity {
                             rate=jsonObject.optString("rate");
                             Log.d("ratemmmmmm","mm"+rate);
                             amount.setText(rate);
+                            sessionManager.setBookingamount(rate);
                             Log.d("otp","mm"+ot);
                             Toast.makeText(CarDetailsnew.this, ot, Toast.LENGTH_LONG).show();
 
@@ -284,6 +285,7 @@ private void boouser(){
             Log.d("source","mm"+sessionManager.getSourceadd());
             params.put("destination",destn.getText().toString());
             Log.d("des","mm"+destn.getText().toString());
+            sessionManager.setBookinglat(destn.getText().toString());
             params.put("mode_of_payment",payment.getText().toString());
             Log.d("lat","mm"+payment.getText().toString());
             params.put("amount",rate);

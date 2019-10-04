@@ -55,7 +55,7 @@ public class choosecar extends AppCompatActivity {
         dialogs.setMessage("Loading");
         dialogs.show();
 
-        imagen=findViewById(R.id.imk);
+      /*  imagen=findViewById(R.id.imk);
 
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class choosecar extends AppCompatActivity {
                 finish();
             }
         });
-
+*/
         setContentView(R.layout.activity_choosecar);
        /* RecyclerPojo[] recyclerPojo = new RecyclerPojo[]{
                 new RecyclerPojo("ALTO", R.drawable.alto, "    45 KM", "4.2*"),

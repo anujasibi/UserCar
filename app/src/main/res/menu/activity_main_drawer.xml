@@ -8,10 +8,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ride"
             android:title="Your Trips History" />
-        <item
-            android:id="@+id/nav_photos"
-            android:icon="@drawable/payment"
-            android:title="Payments" />
+
         <item
             android:id="@+id/nav_movies"
             android:icon="@drawable/place"

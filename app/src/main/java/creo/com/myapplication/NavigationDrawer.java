@@ -117,9 +117,7 @@ public class NavigationDrawer extends AppCompatActivity {
                     case R.id.nav_home:
                         startActivity(new Intent(NavigationDrawer.this,MainActivity.class));
                         break;
-                    case R.id.nav_photos:
 
-                        break;
                     case R.id.nav_movies:
 
                         break;

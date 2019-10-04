@@ -232,13 +232,46 @@
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/cardk"
+                android:id="@+id/cardz"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                app:cardElevation="2dp"
+                android:layout_height="50dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/payment"
+                        android:text="Add Payment"
+                        android:hint="Add Payment"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        />
+
+
+                </RelativeLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/book"
-                android:layout_below="@+id/cardk"
-                android:layout_marginTop="20dp"
+                android:layout_below="@+id/cardz"
+                android:layout_marginTop="30dp"
                 android:background="#1AAEF4"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -249,6 +282,7 @@
                 android:textSize="22sp"
                 android:textAlignment="center"
                 android:gravity="center_vertical"/>
+
 
 
 

@@ -1,8 +1,12 @@
 package creo.com.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,7 +36,7 @@ import creo.com.myapplication.utils.Global;
 import creo.com.myapplication.utils.SessionManager;
 
 public class carbysource extends AppCompatActivity {
-    TextView carname,drivername,destn;
+    TextView carname,drivername,destn,payment,book;
     String cname,dname,imag,dest=null;
     ImageView imageView;
     TextView amount;
@@ -42,6 +47,9 @@ public class carbysource extends AppCompatActivity {
     SessionManager sessionManager;
     private String URLline = Global.BASE_URL+"driver/get_trip_fare/";
     ImageView imagen;
+    CardView cardView;
+    private ProgressDialog dialogs ;
+    private String URLlin = "http://creocabs.herokuapp.com/user/make_payment/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +60,53 @@ public class carbysource extends AppCompatActivity {
         fair();
 
         carname=findViewById(R.id.text);
+        cardView=findViewById(R.id.cardz);
         drivername=findViewById(R.id.names);
         imageView=findViewById(R.id.indicator);
         destn=findViewById(R.id.textn1);
         amount=findViewById(R.id.amount);
+        payment=findViewById(R.id.payment);
+        book=findViewById(R.id.book);
         sessionManager = new SessionManager(this);
-
+        dialogs=new ProgressDialog(carbysource.this,R.style.MyAlertDialogStyle);
         imagen=findViewById(R.id.imk);
+        dialogs.setMessage("Loading..");
+        dialogs.show();
+        payment.setText(Global.mode);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(carbysource.this,AddPayment.class);
+                intent.putExtra("Car",cname);
+                intent.putExtra("Name",dname);
+                intent.putExtra("image",imag);
+                intent.putExtra("dest",dest);
+                intent.putExtra("rate",amount.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogs.setMessage("Loading..");
+                dialogs.show();
+                if(Global.mode.equals("Cash")){
+                    boouser();
+                }
+                if(Global.mode.equals("Pay Online")){
+                    Intent intent=new Intent(carbysource.this,PaymentActivity.class);
+                    intent.putExtra("destination",destn.getText().toString());
+                    intent.putExtra("mode_of_payment",payment.getText().toString());
+                    intent.putExtra("imagamounte",rate);
+                    startActivity(intent);
+                }
+
+
+
+            }
+        });
+
 
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +126,7 @@ public class carbysource extends AppCompatActivity {
         drivername.setText(dname);
         destn.setText(dest);
         amount.setText(rate);
+        destn.setText(sessionManager.getBookinglong());
 
 
 
@@ -87,7 +136,7 @@ public class carbysource extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //  dialog.dismiss();
+                        dialogs.dismiss();
                         Toast.makeText(carbysource.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);
                         try {
@@ -155,6 +204,97 @@ public class carbysource extends AppCompatActivity {
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+    }
+
+    private void boouser(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLlin,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dialogs.dismiss();
+                        //  dialog.dismiss();
+                        Toast.makeText(carbysource.this,response,Toast.LENGTH_LONG).show();
+                        //parseData(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String ot = jsonObject.optString("message");
+                            String status=jsonObject.optString("status");
+                            Log.d("otp","mm"+ot);
+                            Toast.makeText(carbysource.this, ot, Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                            String msg="Thank you for Choosing Us";
+                            String msg1="Booking Confirmed.";
+                            String msg2="Click to Track your car.";
+
+
+
+                            builder.setTitle(msg).setMessage(msg1+"\n"+msg2)
+                                    .setCancelable(false)
+                                    .setPositiveButton("Track", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Intent intent = new Intent(carbysource.this, CarTracking.class);
+
+                                            //  Log.d("pppppp","mm"+token);
+                                            startActivity(intent);
+
+                                            //  MyActivity.this.finish();
+                                        }
+                                    });
+
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("response","hhh"+response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(carbysource.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("driver", sessionManager.getID());
+                Log.d("driver","mm"+sessionManager.getID());
+                params.put("source",sessionManager.getSourceadd());
+                Log.d("source","mm"+sessionManager.getSourceadd());
+                params.put("destination",destn.getText().toString());
+                Log.d("des","mm"+destn.getText().toString());
+                sessionManager.setBookinglat(destn.getText().toString());
+                params.put("mode_of_payment",payment.getText().toString());
+                Log.d("lat","mm"+payment.getText().toString());
+                params.put("amount",rate);
+                Log.d("lat","mm"+rate);
+                params.put("payment_id","");
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token "+sessionManager.getTokens());
+                return params;
+            }
+
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+
+
     }
 
 

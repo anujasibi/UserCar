@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TripEnding">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/blu"
+                android:id="@+id/rev"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/ne"
+                    android:textSize="18sp"
+                    android:background="@color/blu"
+                    android:text="Trip Ending"
+                    android:layout_toEndOf="@+id/imk"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imk"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/back"/>
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/ten"
+                android:text="Thankyou for choosing us"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rev"/>
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ima"
+                android:layout_below="@+id/ten"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/location"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/td"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/ima"
+                android:layout_marginTop="70dp"
+                android:text="Source"
+                android:layout_below="@+id/ten"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imaa"
+                android:layout_below="@+id/ima"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/dott"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imaaa"
+                android:layout_below="@+id/imaa"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/loca"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tn"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/imaaa"
+                android:layout_marginTop="95dp"
+                android:text="Destination"
+                android:layout_below="@+id/td"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/yu"
+                android:text="Amount Paid"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:textColor="#000"
+                android:layout_below="@+id/imaaa"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                />
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:text="$ 450"
+                android:textStyle="bold"
+                android:layout_below="@+id/yu"
+                android:gravity="center"
+                android:layout_marginEnd="30dp"
+                android:layout_centerInParent="true"
+                android:textSize="30dp"
+                android:textColor="#1AAEF4"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_below="@+id/amount"
+                android:layout_marginTop="47dp"
+               >
+
+                <RatingBar
+                    android:id="@+id/ratingBar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
+
+
+

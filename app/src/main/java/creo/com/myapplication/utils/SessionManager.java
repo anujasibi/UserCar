@@ -24,6 +24,43 @@ public class SessionManager {
     sharedPreferences.edit().putString("lat",lat).commit();
     }
 
+    public String getBookinglat() {
+        String lat = sharedPreferences.getString("blat","");
+
+        return lat;
+    }
+
+    public void setBookinglong(String blong) {
+        sharedPreferences.edit().putString("blong",blong).commit();
+    }
+    public String getBookinglong() {
+        String lat = sharedPreferences.getString("blong","");
+
+        return lat;
+    }
+    public void setlocation(String location) {
+        sharedPreferences.edit().putString("location",location).commit();
+    }
+    public String getlocation() {
+        String lat = sharedPreferences.getString("location","");
+
+        return lat;
+    }
+
+
+    public void setBookinglat(String blat) {
+        sharedPreferences.edit().putString("blat",blat).commit();
+    }
+    public void setBookingamount(String bam) {
+        sharedPreferences.edit().putString("bam",bam).commit();
+    }
+    public String getBookingamount() {
+        String lat = sharedPreferences.getString("bam","");
+
+        return lat;
+    }
+
+
     public String getID() {
         String lat = sharedPreferences.getString("ID","");
 

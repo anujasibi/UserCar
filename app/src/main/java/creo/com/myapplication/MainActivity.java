@@ -783,10 +783,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     case R.id.nav_home:
                         startActivity(new Intent(MainActivity.this,TripHistory.class));
                         break;
-                    case R.id.nav_photos:
-                        startActivity(new Intent(MainActivity.this,PaymentActivity.class));
 
-                        break;
                     case R.id.schedule:
                         startActivity(new Intent(MainActivity.this,SCHEDULEDTRIPS.class));
 
@@ -1006,6 +1003,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void grtl(){
         EditText locationSearch = (EditText) findViewById(R.id.editText);
         String address = locationSearch.getText().toString();
+        sessionManager.setlocation(address);
         GeocodingLocation locationAddress = new GeocodingLocation();
         locationAddress.getAddressFromLocation(address,
                 getApplicationContext(), new MainActivity.GeocoderHandler());

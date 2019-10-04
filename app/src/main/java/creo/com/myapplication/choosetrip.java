@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class choosetrip extends AppCompatActivity {
     ArrayList<RecyclerPojo> dataModelArrayList;
     SessionManager sessionManager;
     ImageView imagen;
+    private ProgressDialog dialogs ;
 
     private String URLline = Global.BASE_URL+"driver/get_cabs_on_source/";
 
@@ -62,6 +64,7 @@ public class choosetrip extends AppCompatActivity {
         source=findViewById(R.id.name);
         dest=findViewById(R.id.name1);
         time=findViewById(R.id.name2);
+        dialogs=new ProgressDialog(choosetrip.this,R.style.MyAlertDialogStyle);
         sessionManager = new SessionManager(this);
         imagen=findViewById(R.id.imk);
 
@@ -85,6 +88,7 @@ public class choosetrip extends AppCompatActivity {
           public void onFocusChange(View v, boolean hasFocus) {
               String address = source.getText().toString();
 
+
               GeocodingLocation locationAddress = new GeocodingLocation();
               locationAddress.getAddressFromLocation(address,
                       getApplicationContext(), new choosetrip.GeocoderHandler());
@@ -96,6 +100,7 @@ public class choosetrip extends AppCompatActivity {
           @Override
           public void onFocusChange(View v, boolean hasFocus) {
               String address = dest.getText().toString();
+              sessionManager.setBookinglong(address);
 
               GeocodingLocation locationAddress = new GeocodingLocation();
               locationAddress.getAddressFromLocation(address,
@@ -120,11 +125,15 @@ public class choosetrip extends AppCompatActivity {
         ty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialogs.setMessage("Loading..");
+                dialogs.show();
 
             //
             passlatlong();
             }
         });
+
+
     }
 
 
@@ -192,6 +201,7 @@ public class choosetrip extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         recyclerView.setVisibility(View.VISIBLE);
+                        dialogs.dismiss();
                         Toast.makeText(choosetrip.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);
                         try {

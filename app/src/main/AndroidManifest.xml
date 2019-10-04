@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CarTracking"></activity>
+        <activity android:name=".TripEnding"></activity>
+        <activity android:name=".CarTracking" />
         <activity android:name=".carbysource" />
         <activity android:name=".scheduleverify" />
         <activity android:name=".savedplacelist" />
@@ -35,16 +36,15 @@
         <activity android:name=".otpverify" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".forgotpassword" />
-        <service
-            android:name=".MyFirebaseInstanceIdService">
+
+        <service android:name=".MyFirebaseInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 

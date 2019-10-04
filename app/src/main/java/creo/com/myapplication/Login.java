@@ -19,6 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,10 +37,12 @@ public class Login extends AppCompatActivity {
     TextInputEditText phoneno,password;
     TextView forget;
     SessionManager sessionManager;
+    FirebaseAnalytics firebaseAnalytics;
     Context context=this;
     String phone_no = null;
     private String URLline = Global.BASE_URL+"user/user_login/";
     private ProgressDialog dialog ;
+    private String token_firebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,9 @@ public class Login extends AppCompatActivity {
         signup=findViewById(R.id.si);
         password=findViewById(R.id.names);
         forget=findViewById(R.id.tbc);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        token_firebase = FirebaseInstanceId.getInstance().getToken();
+        Log.d("tokkkken","lhykhiyh"+token_firebase);
         Bundle bundle = getIntent().getExtras();
         phone_no = bundle.getString("phone_no");
         Log.d("phone","mm"+phone_no);
